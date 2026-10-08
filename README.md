@@ -1,58 +1,88 @@
-# Autonomous-Multi-Agent-r 🤖🌐
+# Autonomous-Multi-Agent-r 🤖🏢
 
-> Production-grade Autonomous Multi-Agent Collaborative System with Tool Calling, ChromaDB Vector Memory, and QLoRA Domain-Specific LLM Fine-Tuning.
+> Enterprise-grade Generative AI & Agentic Platform featuring Autonomous Multi-Agent Workflows, Production RAG & Retrieval Systems, Vector Databases, LLM Evaluation Frameworks, and QLoRA Fine-Tuning.
 
-## 📌 Overview
-**Autonomous-Multi-Agent-r** represents the cutting-edge frontier of AI Engineering. It combines two foundational pillars:
-1. **Autonomous Multi-Agent Orchestration:** Specialized agents (Planning Agent, Scraper/Pricing Agent, Opportunity Evaluator) collaborating to solve complex commercial tasks (discovering bargains, evaluating value arbitrage, persisting memory across sessions).
-2. **Core ML / Parameter-Efficient Fine-Tuning (QLoRA):** Adapting open-weights frontier models (Llama 3 / Mistral) using 4-bit NormalFloat (NF4) quantization, LoRA adapter matrices, and supervised fine-tuning (SFT) for high-accuracy domain execution.
+## 📌 Executive Summary
+**Autonomous-Multi-Agent-r** is an end-to-end enterprise AI platform designed to architect, benchmark, and deploy production-ready Generative AI systems. It unifies the entire modern enterprise AI lifecycle across 5 production modules:
 
-## 🧠 System Architecture
+1. **🤖 Autonomous Multi-Agent Systems:** Cooperative agent networks (Planning, Pricing, Evaluation, Negotiation) equipped with tool-calling capabilities and persistent session memory.
+2. **📚 Production RAG & Retrieval Systems:** Knowledge-base ingestion, hybrid semantic retrieval, context re-ranking, and hallucination reduction.
+3. **⚡ Vector Databases & Embeddings:** Scalable vector index structures using ChromaDB and high-dimensional semantic search.
+4. **📊 Evaluation Frameworks & Observability:** Systematic LLM benchmarking, RAG Triad metrics (Context Relevance, Groundedness, Answer Relevance), and automated evaluation suites.
+5. **🧠 Core ML & QLoRA Fine-Tuning:** Parameter-efficient 4-bit (NF4) domain adaptation and Supervised Fine-Tuning (SFT) for specialized model tasks.
 
-### 1. Multi-Agent Collaborative Loop
+---
+
+## 🏛️ Platform Architecture
 ```text
-  User Intent / Market Signal
-             │
-             ▼
-      [Planning Agent]
-     (Decomposes Goals)
-             │
-      ┌──────┴──────────────────┐
-      ▼                         ▼
- [Pricing Agent]        [Arbitrage Agent]
-(Vector DB Lookup)    (Evaluates Opportunity)
-      │                         │
-      └──────────┬──────────────┘
-                 ▼
-     [Persistent ChromaDB & Memory]
+                       [Enterprise Query / Goal]
+                                  │
+                                  ▼
+                    ┌───────────────────────────┐
+                    │  Planning & Agent Engine  │
+                    │   (Autonomous Loop & Tool)│
+                    └─────────────┬─────────────┘
+                                  │
+         ┌────────────────────────┼────────────────────────┐
+         ▼                        ▼                        ▼
+┌─────────────────┐      ┌─────────────────┐      ┌─────────────────┐
+│ Vector Database │      │ Advanced RAG &  │      │ QLoRA Fine-Tuned│
+│  (ChromaDB)     │      │ Retrieval Engine│      │ Adapter Models  │
+└────────┬────────┘      └────────┬────────┘      └────────┬────────┘
+         │                        │                        │
+         └────────────────────────┼────────────────────────┘
+                                  ▼
+                   ┌─────────────────────────────┐
+                   │   Evaluation & Guardrails   │
+                   │ (RAG Triad & Metric Suite)  │
+                   └──────────────┬──────────────┘
+                                  ▼
+                       [Validated Response]
 ```
 
-### 2. QLoRA Domain Fine-Tuning Backbone
-- **4-bit NormalFloat (NF4) Quantization:** Drastically reduces VRAM footprint while preserving model weights precision.
-- **LoRA Low-Rank Adapters:** Trains low-rank decomposition matrices ($A$ and $B$) on attention projections ($W_q, W_k, W_v, W_o$) without touching frozen base weights.
-- **PEFT + TRL Supervised Fine-Tuning:** Custom dataset formatting, cross-entropy loss convergence, and adapter merging.
+---
 
 ## 📁 Repository Structure
+
 ```text
-├── autonomous_agents/                 # Multi-Agent Orchestration Engine
-│   ├── agents/                        # Specialized Agent definitions (Planning, Deals, etc.)
-│   ├── deal_agent_framework.py        # Central agent coordinator & ChromaDB client
-│   ├── price_is_right.py              # Market evaluation engine
-│   ├── pricer_service.py              # Autonomous API tool server
-│   ├── memory.json                    # Persistent session memory store
+├── autonomous_agents/                 # Module 1: Autonomous Multi-Agent Workflows
+│   ├── agents/                        # Specialized agent definitions (Planning, Deals, Scrapers)
+│   ├── deal_agent_framework.py        # Central agent orchestrator & tool execution
+│   ├── price_is_right.py              # Autonomous decision logic
+│   ├── memory.json                    # Persistent agent memory store
 │   └── day1.ipynb - day5.ipynb        # Agent development progression
 │
-├── qlora_fine_tuning/                 # Core ML Parameter-Efficient Fine-Tuning
-│   ├── jsonl/                         # Formatted instruction datasets
-│   ├── redemption_train.ipynb         # QLoRA fine-tuning training loop (PEFT/TRL)
-│   ├── redemption_run.ipynb           # Model evaluation & generation testing
-│   └── day1.ipynb - day5.ipynb        # Fine-tuning labs and loss analysis
+├── rag_retrieval_system/              # Module 2: Enterprise RAG & Retrieval System
+│   ├── knowledge-base/                # Domain document ingestion repository
+│   ├── implementation/                # Retrieval pipelines & context injection
+│   ├── pro_implementation/            # Production RAG pipeline with re-ranking
+│   ├── evaluator.py                   # RAG retrieval quality evaluation
+│   ├── app.py                         # Interactive RAG service application
+│   └── day1.ipynb - day5.ipynb        # RAG architectural progression
+│
+├── vector_databases/                  # Module 3: Vector Databases & Embeddings
+│   ├── system_info.py                 # ChromaDB indexing & vector search engine
+│   └── day3.ipynb - day5.ipynb        # High-dimensional embeddings & vector space analysis
+│
+├── evaluation_frameworks/             # Module 4: LLM & RAG Evaluation Framework
+│   ├── pricer/                        # Metric evaluators & ground truth benchmarks
+│   ├── util.py                        # Automated evaluation runners & scoring
+│   ├── results.ipynb                  # Quantitative benchmark analysis
+│   └── day1.ipynb - day5.ipynb        # Evaluation metrics & guardrail labs
+│
+├── qlora_fine_tuning/                 # Module 5: Core ML & QLoRA Fine-Tuning
+│   ├── jsonl/                         # Instruction dataset pairs
+│   ├── redemption_train.ipynb         # 4-bit PEFT/TRL supervised fine-tuning loop
+│   ├── redemption_run.ipynb           # Model evaluation & generation inference
+│   └── day1.ipynb - day5.ipynb        # Quantization & loss convergence labs
 │
 ├── requirements.txt                   # Unified dependencies
 └── README.md
 ```
 
-## ⚙️ Setup & Execution
+---
+
+## ⚙️ Setup & Verification
 
 ### 1. Installation
 ```bash
@@ -66,23 +96,31 @@ pip install -r requirements.txt
 ```
 
 ### 2. Environment Configuration
-Create a `.env` file in the root directory:
+Create a `.env` file in the project root:
 ```bash
-OPENAI_API_KEY=your_openai_key
-# Or local Ollama endpoint (e.g. OLLAMA_HOST=http://localhost:11434)
+OPENAI_API_KEY=your_key_here
+# Optional local model endpoint:
+# OLLAMA_HOST=http://localhost:11434
 ```
 
-### 3. Launch the Multi-Agent Framework
-```bash
-cd autonomous_agents
-python deal_agent_framework.py
-```
+### 3. Running Modules
+* **Launch Autonomous Agents:**
+  ```bash
+  cd autonomous_agents
+  python deal_agent_framework.py
+  ```
+* **Run RAG Application:**
+  ```bash
+  cd rag_retrieval_system
+  python app.py
+  ```
+* **Run Automated Evaluation Suite:**
+  ```bash
+  cd evaluation_frameworks
+  jupyter lab results.ipynb
+  ```
 
-### 4. Explore QLoRA Training Notebooks
-```bash
-cd qlora_fine_tuning
-jupyter lab redemption_train.ipynb
-```
+---
 
 ## 📄 License
 MIT License
